@@ -1,0 +1,21 @@
+{
+  "name": "TheGJian/oauth",
+  "description": "Third party login extension package",
+  "keywords": ["qq", "wx", "sina"],
+  "type": "library",
+
+  "authors": [
+    {
+      "name": "TheGJian"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "oauth\\": "src/"
+    }
+  }
+}
