@@ -6,9 +6,11 @@
  * Time: 21:30
  */
 
-namespace TheGJian\OAuth\src;
+namespace ZGuangJian\OAuth\src;
 
-use TheGJian\OAuth\OAuth;
+
+
+use ZGuangJian\OAuth\OAuth;
 
 class qq extends OAuth
 {

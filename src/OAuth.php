@@ -6,8 +6,7 @@
  * Time: 21:30
  */
 
-namespace TheGJian\OAuth;
-
+namespace ZGuangJian\OAuth;
 
 class OAuth
 {

@@ -1,12 +1,11 @@
 {
-  "name": "TheGJian/oauth",
+  "name": "zguangjian/oauth",
   "description": "Third party login extension package",
   "keywords": ["qq", "wx", "sina"],
-  "type": "library",
 
   "authors": [
     {
-      "name": "TheGJian"
+      "name": "zguangjian"
     }
   ],
   "license": "MIT",
@@ -15,7 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "oauth\\": "src/"
+      "ZGuangJian\\Oauth\\": "src/"
     }
   }
 }
