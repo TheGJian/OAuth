@@ -11,7 +11,7 @@
   "license": "MIT",
   "require": {
     "php": ">=5.6",
-    "ZGuangJian/Oauth": "dev-master"
+    "zguangjian/oauth": "dev-master"
   },
   "autoload": {
     "psr-4": {
