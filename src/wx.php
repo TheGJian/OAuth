@@ -6,11 +6,11 @@
  * Time: 21:30
  */
 
-namespace zguangjian\oauth\src;
+namespace ZGuangJian;
 
 
 
-use zguangjian\oauth\OAuth;
+use ZGuangJian\OAuth;
 
 class wx extends OAuth
 {
