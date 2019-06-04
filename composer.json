@@ -3,19 +3,17 @@
   "description": "Third party login extension package",
   "keywords": ["qq", "wx", "sina"],
 
-  "authors": [
-    {
-      "name": "zguangjian"
-    }
-  ],
+  "authors": [{
+      "name"  : "zguangjian",
+      "email" : "zguangjian@outlook.com"
+  }],
   "license": "MIT",
   "require": {
     "php": ">=5.6",
-    "zguangjian/oauth": "dev-master"
   },
   "autoload": {
     "psr-4": {
-      "ZGuangJian\\Oauth\\": "src/"
+      "ZGuangJian": "Oauth/"
     }
   }
 }
