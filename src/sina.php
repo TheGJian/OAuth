@@ -6,10 +6,10 @@
  * Time: 21:31
  */
 
-namespace zguangjian\OAuth\src;
+namespace zguangjian\oauth\src;
 
 
-use zguangjian\OAuth\OAuth;
+use zguangjian\oauth\OAuth;
 
 class sina extends OAuth
 {

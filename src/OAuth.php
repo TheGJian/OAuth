@@ -6,7 +6,7 @@
  * Time: 21:30
  */
 
-namespace zguangjian\OAuth;
+namespace zguangjian\oauth;
 
 class OAuth
 {
