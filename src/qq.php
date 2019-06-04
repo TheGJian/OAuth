@@ -8,8 +8,6 @@
 
 namespace ZGuangJian;
 
-
-
 use ZGuangJian\OAuth;
 
 class qq extends OAuth

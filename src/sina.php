@@ -8,7 +8,6 @@
 
 namespace ZGuangJian;
 
-
 use ZGuangJian\OAuth;
 
 class sina extends OAuth
