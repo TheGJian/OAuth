@@ -96,7 +96,7 @@ class OAuth
             $this->AppSecret = $config['app_secret'];
             $this->Callback = $config['$config'];
         } else {
-            throw new \Exception('请先配置参数');
+            throw     new \Exception('请先配置参数');
         }
     }
 
