@@ -45,9 +45,9 @@ class qq extends OAuth
      */
     protected $ApiBase = 'https://graph.qq.com/';
 
-    public function __construct($token = null)
+    public function __construct($config)
     {
-        parent::__construct($token);
+        parent::__construct($config);
     }
 
     public function getCodeUrl()

@@ -18,14 +18,21 @@
 
 
 ## 支持的支付方法
+       初始化统一参数 
+       $config = [
+            'app_id' => '' ,
+            'app_secret' => '',
+            'callback' => ''
+       ]
 ### 1、qq登录
       public function login()
       {
-            $OAuth = new qq();
+            $OAuth = new qq($config);
             echo $OAuth->getCodeUrl();
       }
        public function callback()
       {
+            $OAuth = new qq($config);
             $code = Input::get('code');
             $obj = $OAuth->getUserInfoByCode($code); //返回对象或错误结果
        }
@@ -33,24 +40,24 @@
 ### 2、微信登录
      public function login()
       {
-            $OAuth = new wx();
+            $OAuth = new wx($config);
             echo $OAuth->getCodeUrl();
       }
        public function callback()
       {
-            $OAuth = new wx();
+            $OAuth = new wx($config);
             $code = Input::get('code');
             $obj = $OAuth->getUserInfoByCode($code); //返回对象或错误结果
        }
 ### 3、微博登录
      public function login()
       {
-            $OAuth = new sina();
+            $OAuth = new sina($config);
             echo $OAuth->getCodeUrl();
       }
        public function callback()
       {
-            $OAuth = new sina();
+            $OAuth = new sina($config);
             $code = Input::get('code');
             $obj = $OAuth->getUserInfoByCode($code); //返回对象或错误结果
        }

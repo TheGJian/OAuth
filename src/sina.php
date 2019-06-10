@@ -31,9 +31,9 @@ class sina extends OAuth
      */
     protected $GetAccessUserInfo = 'https://api.weibo.com/2/users/show.json';
 
-    public function __construct($Token = null)
+    public function __construct($config)
     {
-        parent::__construct($Token);
+        parent::__construct($config);
     }
 
     public function getCodeUrl()

@@ -87,16 +87,15 @@ class OAuth
      */
     public $UserInfo;
 
-    public  function __construct($Token)
+    public  function __construct($config)
     {
         $class = get_class($this);
-        $this->Type = strtoupper(substr(strrchr($class,"\\"),1));
-        if (!empty(env($this->Type.'_KEY')) || !empty(env($this->Type,'_SECRET')) || !empty(env($this->Type.'_CALLBACK'))){
-            $this->AppKey = env($this->Type.'_KEY');
-            $this->AppSecret = env($this->Type.'_SECRET');
-            $this->Callback = env($this->Type.'_CALLBACK');
-
-        }else{
+        $this->Type = strtoupper(substr(strrchr($class, "\\"), 1));
+        if (!empty($config['app_id']) || !empty($config['app_secret']) || !empty($config['callback'])) {
+            $this->AppKey = $config['app_id'];
+            $this->AppSecret = $config['app_secret'];
+            $this->Callback = $config['$config'];
+        } else {
             throw new \Exception('请先配置参数');
         }
     }
