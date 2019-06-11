@@ -94,7 +94,7 @@ class OAuth
         if (!empty($config['app_id']) || !empty($config['app_secret']) || !empty($config['callback'])) {
             $this->AppKey = $config['app_id'];
             $this->AppSecret = $config['app_secret'];
-            $this->Callback = $config['$config'];
+            $this->Callback = $config['callback'];
         } else {
             throw     new \Exception('请先配置参数');
         }
