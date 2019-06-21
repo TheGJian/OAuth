@@ -56,7 +56,7 @@ class qq extends OAuth
             'client_id' => $this->AppKey,
             'redirect_uri' => $this->Callback,
             'response_type' =>$this->ResponseType,
-            'state' => md5(url('home/public/qqCallback'))
+            'state' => md5(rand(1,100))
         ];
 
         $res = $this->getRequestCodeUrl($params);
