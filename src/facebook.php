@@ -37,7 +37,6 @@ class facebook extends OAuth
 			'client_id' => $this->AppKey,
 			'redirect_uri' => $this->Callback,
 			'response_type' => $this->ResponseType,
-			'scope' => 'user_about_me,email,read_stream', //表示取得的用户信息的权限范围
 			'state' => md5(rand(1, 100))
 		];
 		return $this->GetRequestCodeURL($params);
