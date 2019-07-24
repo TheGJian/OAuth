@@ -12,5 +12,4 @@ use ZGuangJian\OAuth;
 
 class wx extends OAuth
 {
-
 }

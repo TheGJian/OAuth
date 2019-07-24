@@ -1,31 +1,30 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Tjian
- * Date: 2019/5/9
- * Time: 21:31
+ * User: zguangjian
+ * Date: 2019/7/24
+ * Time: 11:28
+ * Email: zguangjian@outlook.com
  */
 
 namespace ZGuangJian;
 
-use ZGuangJian\OAuth;
-
-class sina extends OAuth
+class facebook extends OAuth
 {
 	/**
 	 * 获取requestCode的api接口
 	 * @var string
 	 */
-	protected $GetRequestCodeURL = 'https://api.weibo.com/oauth2/authorize';
+	protected $GetRequestCodeURL = 'https://www.facebook.com/v3.3/dialog/oauth';
 	/**
 	 * 获取access_token的api接口
 	 * @var string
 	 */
-	protected $GetAccessTokenURL = 'https://api.weibo.com/oauth2/access_token';
+	protected $GetAccessTokenURL = 'https://graph.facebook.com/v3.3/oauth/access_token';
 	/**
 	 * 获取用户基本信息api接口
 	 */
-	protected $GetAccessUserInfo = 'https://api.weibo.com/2/users/show.json';
+	protected $GetAccessUserInfo = 'https://graph.facebook.com/me';
 
 	public function __construct($config)
 	{
@@ -38,6 +37,7 @@ class sina extends OAuth
 			'client_id' => $this->AppKey,
 			'redirect_uri' => $this->Callback,
 			'response_type' => $this->ResponseType,
+			'scope' => 'user_about_me,email,read_stream', //表示取得的用户信息的权限范围
 			'state' => md5(rand(1, 100))
 		];
 		return $this->GetRequestCodeURL($params);
@@ -50,24 +50,12 @@ class sina extends OAuth
 			'client_secret' => $this->AppSecret,
 			'grant_type' => $this->GrantType,
 			'code' => $code,
-			'redirect_uri' => $this->Callback
+			'redirect_uri' => $this->Callback,
 		];
-		$res = $this->getAccessToken($params, 'POST');
+		$res = $this->getAccessToken($params, 'GET');
 		$data = json_decode($res, true);
-		$this->Token = $data['access_token'];
-		$this->OpenId = $data['uid'];
+		$this->Token = $data['access-token'];
 		$this->Other = $data;
-		$params = [
-			'access_token' => $this->Token,
-			'uid' => $this->OpenId
-		];
-		$res = $this->getUserInfo($params);
-		if (empty($res->error_code)) {
-
-			$this->UserInfo = $res;
-		} else {
-			throw new \Exception($res->error);
-		}
 		return $this;
 	}
 }
