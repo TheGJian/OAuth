@@ -1,11 +1,11 @@
 {
-  "name": "ZGuangJian/oauth",
+  "name": "zguangjian/oauth",
   "description": "Third party login extension package",
   "keywords": ["qq", "wx", "sina"],
 
   "authors": [{
-      "name"  : "ZGuangJian",
-      "email" : "ZGuangJian@outlook.com"
+      "name"  : "zguangjian",
+      "email" : "zguangjian@outlook.com"
   }],
   "license": "MIT",
   "require": {
@@ -13,7 +13,7 @@
   },
   "autoload": {
     "psr-4": {
-      "ZGuangJian\\": "src/"
+      "zguangjian\\": "src/"
     }
   }
 }
