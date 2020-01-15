@@ -7,7 +7,7 @@
  * Email: zguangjian@outlook.com
  */
 
-namespace ZGuangJian;
+namespace zguangjian;
 
 class facebook extends OAuth
 {

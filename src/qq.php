@@ -6,9 +6,9 @@
  * Time: 21:30
  */
 
-namespace ZGuangJian;
+namespace zguangjian;
 
-use ZGuangJian\OAuth;
+use zguangjian\OAuth;
 
 class qq extends OAuth
 {
