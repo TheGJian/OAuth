@@ -1,5 +1,5 @@
 {
-  "name": "ZGuangJian/oauth",
+  "name": "zguangjian/oauth",
   "description": "Third party login extension package",
   "keywords": [
     "qq",
@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "ZGuangJian": "src/"
+      "zguangjian\\": "src/"
     }
   }
 }
