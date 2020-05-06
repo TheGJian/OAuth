@@ -9,6 +9,6 @@
 
 namespace zguangjian;
 
-class google extends OAuth
+class Google extends OAuth
 {
 }
