@@ -45,4 +45,9 @@ class Http
         if ($error) throw new \Exception('请求发生错误：' . $error);
         return $data;
     }
+
+    public static function urlSplit($url, $param = [])
+    {
+        return $url . '?' . http_build_query($param);
+    }
 }

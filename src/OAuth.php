@@ -48,7 +48,7 @@ class OAuth
         if (class_exists($methodClass)) {
             return self::make($methodClass);
         }
-        throw new \Exception('Oauth [$method] Not exists');
+        throw new \Exception("Oauth [$method] Not exists");
     }
 
     /**
@@ -63,5 +63,5 @@ class OAuth
         }
         throw new \Exception("$methodClass Must Be An Instance Of OAuthApplicationInterface");
     }
-    
+
 }

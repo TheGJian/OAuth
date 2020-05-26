@@ -9,7 +9,7 @@
 namespace zguangjian;
 
 use zguangjian\Contracts\OAuthApplicationInterface;
-use zguangjian\OAuth;
+
 
 abstract class Tencent implements OAuthApplicationInterface
 {
@@ -49,7 +49,7 @@ abstract class Tencent implements OAuthApplicationInterface
         $this->config = Config::class;
     }
 
-    public function getCodeUrl()
+    public function getCode()
     {
         $params = [
             'client_id' => $this->AppKey,
@@ -57,7 +57,45 @@ abstract class Tencent implements OAuthApplicationInterface
             'response_type' => $this->ResponseType,
             'state' => md5(rand(1, 100))
         ];
-        return $this->getRequestCodeUrl($params);
+        return Http::urlSplit($this->GetRequestCodeURL, $params);
+    }
+
+    public function getToken(string $code)
+    {
+        $params = [
+            'client_id' => $this->AppKey,
+            'client_secret' => $this->AppSecret,
+            'grant_type' => $this->GrantType,
+            'code' => $code,
+            'redirect_uri' => $this->Callback,
+        ];
+        $res = Http::request($this->GetAccessTokenURL, $params);
+        parse_str($res, $data);
+        $this->config->openid = $this->getOpenId($data['access_token']);
+        return $this;
+    }
+
+    public function getUserInfo(string $openId, string $token)
+    {
+        $param = [
+            'access_token' => $token,
+            'oauth_consumer_key' => $this->AppKey,
+            'openid' => $openId
+        ];
+        $res = Http::request($this->GetAccessUserInfo, $param);
+        return $res;
+    }
+
+    protected function getOpenId($token)
+    {
+        $params = [
+            'access_token' => $this->Token,
+            'oauth_consumer_key' => $this->AppKey,
+            'openid' => $this->OpenId
+        ];
+        $res = Http::request($this->GetAccessOpenId, $params);
+        $data = json_decode(substr(substr($res, strpos($res, '{')), 0, strpos(substr($res, strpos($res, '{')), '}') + 1));
+        return $data->openid;
     }
 
     public function getUserInfoByCode($code)
