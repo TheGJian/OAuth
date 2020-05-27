@@ -65,7 +65,7 @@ class OAuth
         if (class_exists($methodClass)) {
             return self::make($methodClass);
         }
-        throw new \Exception("Extends [$method] Not exists");
+        throw new \Exception("Extend [$method] Not exists");
     }
 
     /**
