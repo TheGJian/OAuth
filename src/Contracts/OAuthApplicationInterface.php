@@ -24,9 +24,14 @@ interface OAuthApplicationInterface
     public function getToken(string $code);
 
     /**
-     * @param string $openId
-     * @param string $token
      * @return mixed
      */
-    public function getUserInfo(string $openId, string $token);
+    public function getOpenId();
+
+    /**
+     * @param string $code
+     * @return mixed
+     */
+    public function getUserInfo(string $code);
+
 }

@@ -15,22 +15,22 @@ class Config
     /**
      * @var array|Config
      */
-    protected $config = [];
+    public $config = [];
     /**
      * oauth版本
      * @var string
      */
-    protected $Version = '2.0';
+    public $Version = '2.0';
     /**
      * 授权类型 response_type 目前只能为code
      * @var string
      */
-    protected $ResponseType = 'code';
+    public $ResponseType = 'code';
     /**
      * grant_type 目前只能为 authorization_code
      * @var string
      */
-    protected $GrantType = 'authorization_code';
+    public $GrantType = 'authorization_code';
 
 
     public function __construct($config)
