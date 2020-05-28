@@ -1,7 +1,14 @@
 {
   "name": "zguangjian/oauth",
   "description": "Third party login extension package",
-  "keywords": ["FaceBook", "Google", "Sina", "Tencent", "Wechat"],
+  "keywords": [
+    "FaceBook",
+    "Google",
+    "Sina",
+    "Tencent",
+    "Wechat",
+    "GitHub"
+  ],
   "authors": [
     {
       "name": "zguangjian",
@@ -11,7 +18,8 @@
   "license": "MIT",
   "version": "1.0.1",
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.0",
+    "zguangjian/oauth": "1.0.1"
   },
   "autoload": {
     "psr-4": {
