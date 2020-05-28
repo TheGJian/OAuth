@@ -10,6 +10,7 @@ namespace zguangjian;
 
 use zguangjian\Contracts\OAuthApplicationInterface;
 use zguangjian\Extend\FaceBook;
+use zguangjian\Extend\GitHub;
 use zguangjian\Extend\Google;
 use zguangjian\Extend\Sina;
 use zguangjian\Extend\Tencent;
@@ -23,6 +24,7 @@ use zguangjian\Extend\WeChat;
  * @method static Sina      Sina(array $config)         新浪登陆
  * @method static Tencent   Tencent(array $config)      腾讯QQ登陆
  * @method static WeChat    WeChat(array $config)       微信登陆
+ * @method static GitHub    GitHub(array $config)       GitHub登陆
  */
 class OAuth
 {

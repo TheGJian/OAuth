@@ -27,6 +27,7 @@ class GitHub extends OAuthInterface
     {
         $this->payload = [
             'AppKey' => $config->config['AppKey'],
+            'AppName' => $config->config['AppName'],
             'AppSecret' => $config->config['AppSecret'],
             'Callback' => $config->config['Callback'],
             'Version' => $config->Version,
@@ -79,12 +80,12 @@ class GitHub extends OAuthInterface
     public function getUserInfo(string $code)
     {
         $this->getToken($code);
-        $param = [
-            'access_token' => $this->payload['accessToken']
+        $head = [
+            'Authorization:token ' . $this->payload['accessToken'],
+            'User-Agent:' . $this->payload['AppName']
         ];
-        $res = Http::request($this->GetAccessUserInfo, $param);
-        $res = json_decode($res);
-        $this->payload['userInfo'] = $res;
+        $res = Http::request($this->GetAccessUserInfo, [], 'GET', $head);
+        $this->payload['userInfo'] = json_decode($res);
         return $this;
 
     }
