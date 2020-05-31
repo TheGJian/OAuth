@@ -33,7 +33,7 @@ class GitHub extends OAuthInterface
             'Version' => $config->Version,
             'ResponseType' => $config->ResponseType,
             'GrantType' => $config->GrantType,
-            'State' => $config->config['State'],
+            'State' => $config->config['State'] ?: md5(mt_rand()),
         ];
     }
 
