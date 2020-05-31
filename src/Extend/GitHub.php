@@ -66,9 +66,9 @@ class GitHub extends OAuthInterface
             'redirect_uri' => $this->payload['Callback'],
             'state' => $this->payload['state'],
         ];
-        $res = Http::request($this->GetRequestTokenURL, $param, 'POST', ['Accept: application/json']);
-        $res = json_decode($res);
-        $this->payload['accessToken'] = $res->access_token;
+
+        $this->payload['accessTokenInfo'] = Http::requestJson(Http::request($this->GetRequestTokenURL, $param, 'POST', ['Accept: application/json']));
+        $this->payload['accessToken'] = $this->payload['accessToken']['access_token'];
         return $this;
     }
 
@@ -84,8 +84,8 @@ class GitHub extends OAuthInterface
             'Authorization:token ' . $this->payload['accessToken'],
             'User-Agent:' . $this->payload['AppName']
         ];
-        $res = Http::request($this->GetAccessUserInfo, [], 'GET', $head);
-        $this->payload['userInfo'] = json_decode($res);
+
+        $this->payload['userInfo'] = Http::requestJson(Http::request($this->GetAccessUserInfo, [], 'GET', $head));
         return $this;
 
     }

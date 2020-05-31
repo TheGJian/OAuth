@@ -12,6 +12,15 @@ namespace zguangjian;
 
 class Http
 {
+    /**
+     * @param $url
+     * @param array $params
+     * @param string $method
+     * @param array $header
+     * @param bool $multi
+     * @return bool|string
+     * @throws \Exception
+     */
     public static function request($url, $params = [], $method = 'GET', $header = [], $multi = false)
     {
         $opts = array(
@@ -50,5 +59,23 @@ class Http
     public static function urlSplit($url, $param = [])
     {
         return $url . '?' . http_build_query($param);
+    }
+
+    /**
+     * @param string $string
+     * @return mixed
+     */
+    public static function requestJson(string $string, $assoc = true)
+    {
+        $content = json_decode($string, $assoc);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new \Exception(sprintf(
+                "Failed to parse JSON response: %s",
+                json_last_error_msg()
+            ));
+        }
+
+        return $content;
     }
 }

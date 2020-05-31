@@ -9,6 +9,7 @@
 namespace zguangjian\Extend;
 
 use zguangjian\Events\OAuthInterface;
+use zguangjian\Http;
 
 class WeChat extends OAuthInterface
 {
@@ -54,7 +55,7 @@ class WeChat extends OAuthInterface
             'code' => $code,
         ];
         $res = $this->getAccessToken($params);
-        $data = json_decode($res, true);
+        $data = Http::requestJson($res, true);
         $this->Token = $data['access_token'];
         $this->OpenId = $data['openid'];
         $this->Other = $data;

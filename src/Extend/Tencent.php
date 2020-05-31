@@ -51,6 +51,10 @@ class Tencent extends OAuthInterface
      */
     protected $ApiBase = 'https://graph.qq.com/';
 
+    /**
+     * Tencent constructor.
+     * @param Config $config
+     */
     public function __construct(Config $config)
     {
         $this->payload = [
@@ -78,7 +82,11 @@ class Tencent extends OAuthInterface
         return Http::urlSplit($this->GetRequestCodeURL, $params);
     }
 
-
+    /**
+     * @param string $code
+     * @return $this|mixed|void
+     * @throws \Exception
+     */
     public function getToken(string $code)
     {
         $params = [
@@ -88,12 +96,18 @@ class Tencent extends OAuthInterface
             'code' => $code,
             'redirect_uri' => $this->payload['Callback'],
         ];
-        $res = Http::request($this->GetAccessTokenURL, $params);
-        parse_str($res, $data);
-        $this->payload['accessToken'] = $data['access_token'];
+
+        parse_str(Http::request($this->GetAccessTokenURL, $params), $data);
+        $this->payload['accessTokenInfo'] = $data;
+        $this->payload['accessToken'] = $this->payload['accessTokenInfo']['access_token'];
         return $this;
     }
 
+    /**
+     * @param string $code
+     * @return array|mixed|void
+     * @throws \Exception
+     */
     public function getUserInfo(string $code)
     {
         $this->getToken($code)->getOpenId();
@@ -103,12 +117,14 @@ class Tencent extends OAuthInterface
             'openid' => $this->payload['openId']
         ];
 
-        $res = Http::request($this->GetAccessUserInfo, $param);
-        $res = json_decode($res, true);
-        $this->payload['userInfo'] = $res;
+        $this->payload['userInfo'] = Http::requestJson(Http::request($this->GetAccessUserInfo, $param), true);
         return $this->payload;
     }
 
+    /**
+     * @return $this|mixed|void
+     * @throws \Exception
+     */
     public function getOpenId()
     {
         $params = [
@@ -116,9 +132,9 @@ class Tencent extends OAuthInterface
         ];
         $res = Http::request($this->GetAccessOpenId, $params);
 
-        $data = json_decode(substr(substr($res, strpos($res, '{')), 0, strpos(substr($res, strpos($res, '{')), '}') + 1));
+        $data = Http::requestJson(substr(substr($res, strpos($res, '{')), 0, strpos(substr($res, strpos($res, '{')), '}') + 1));
         $this->payload['openId'] = $data->openid;
-        
+
         return $this;
     }
 

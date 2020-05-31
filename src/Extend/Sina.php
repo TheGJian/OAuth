@@ -71,10 +71,10 @@ class Sina extends OAuthInterface
             'redirect_uri' => $this->payload['Callback'],
             'code' => $code,
         ];
-        $res = Http::request($this->GetAccessTokenURL, $param, 'POST');
-        $res = json_decode($res);
-        $this->payload['openId'] = $res->uid;
-        $this->payload['accessToken'] = $res->access_token;
+
+        $this->payload['accessTokenInfo'] = Http::requestJson(Http::request($this->GetAccessTokenURL, $param, 'POST'));
+        $this->payload['openId'] = $this->payload['accessTokenInfo']['uid'];
+        $this->payload['accessToken'] = $this->payload['accessTokenInfo']['access_token'];
         return $this;
     }
 
@@ -85,9 +85,8 @@ class Sina extends OAuthInterface
             'access_token' => $this->payload['accessToken'],
             'uid' => $this->payload['openId']
         ];
-        $res = Http::request($this->GetAccessUserInfo, $param);
-        $res = json_decode($res);
-        $this->payload['userInfo'] = $res;
+
+        $this->payload['userInfo'] = Http::requestJson(Http::request($this->GetAccessUserInfo, $param));
         return $this;
 
     }
