@@ -18,6 +18,7 @@ class WindowsLive extends OAuthInterface
 {
     public $payload;
 
+    protected $BaseURL = "https://login.microsoftonline.com";
     /**
      * @var string
      */
@@ -38,15 +39,17 @@ class WindowsLive extends OAuthInterface
     public function __construct(Config $config)
     {
         $this->payload = [
+            'Tenant' => $config->config['Tenant'] ?: 'consumers',
             'AppKey' => $config->config['AppKey'],
             'AppSecret' => $config->config['AppSecret'],
             'Callback' => $config->config['Callback'],
             'Version' => $config->Version,
             'ResponseType' => $config->ResponseType,
             'GrantType' => $config->GrantType,
-            'state' => md5(mt_rand(1, 100)),
-            'scope' => 'openid profile offline_access user.read calendars.read'
+            'State' => $config->config['State'],
+            'Scope' => 'openid profile offline_access user.read calendars.read'
         ];
+        $this->Tenant();
     }
 
     /**
@@ -57,8 +60,8 @@ class WindowsLive extends OAuthInterface
         $param = [
             "client_id" => $this->payload['AppKey'],
             "redirect_uri" => $this->payload['Callback'],
-            "scope" => $this->payload['scope'],
-            "state" => $this->payload['state'],
+            "scope" => $this->payload['Scope'],
+            "state" => $this->payload['State'],
             "response_type" => $this->payload['ResponseType'],
         ];
         return Http::urlSplit($this->GetRequestCodeURL, $param);
@@ -81,7 +84,7 @@ class WindowsLive extends OAuthInterface
         ];
 
         $this->payload['accessTokenInfo'] = Http::requestJson(Http::request($this->GetAccessTokenURL, $param, 'POST', ["Content-Type: application/x-www-form-urlencoded"]));
-        $this->payload['accessToken'] = $this->payload['accessTokenInfo']->access_token;
+        $this->payload['accessToken'] = $this->payload['accessTokenInfo']['access_token'];
         return $this;
     }
 
@@ -98,8 +101,21 @@ class WindowsLive extends OAuthInterface
             "Host: graph.microsoft.com"
         ];
         $this->payload['userInfo'] = Http::requestJson(Http::request($this->GetAccessUserInfo, [], 'GET', $head));
-        $this->payload['openId'] = $this->payload['id'];
+        $this->payload['openId'] = $this->payload['userInfo']['id'];
         return $this;
 
+    }
+
+    /**
+     *  $this->payload['Tenant']
+     *  common 允许用户使用个人 Microsoft 帐户和工作/学校帐户从 Azure AD 登录应用程序。
+     *  organizations 允许用户使用个人 Microsoft 帐户和工作/学校帐户从 Azure AD 登录应用程序。
+     *  consumers 仅允许用户使用个人的 Microsoft 帐户 (MSA) 登录应用程序。。
+     */
+    private function Tenant()
+    {
+        $tenant = $this->payload['Tenant'];
+        $this->GetRequestCodeURL = str_replace('common', $tenant, $this->GetRequestCodeURL);
+        $this->GetAccessTokenURL = str_replace('common', $tenant, $this->GetAccessTokenURL);
     }
 }

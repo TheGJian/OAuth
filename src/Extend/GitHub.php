@@ -33,7 +33,7 @@ class GitHub extends OAuthInterface
             'Version' => $config->Version,
             'ResponseType' => $config->ResponseType,
             'GrantType' => $config->GrantType,
-            'state' => md5(mt_rand(1, 100))
+            'State' => $config->config['State'],
         ];
     }
 
@@ -46,7 +46,7 @@ class GitHub extends OAuthInterface
             'client_id' => $this->payload['AppKey'],
             'redirect_uri' => $this->payload['Callback'],
             'scope' => 'user',
-            'state' => $this->payload['state']
+            'state' => $this->payload['State']
         ];
 
         return Http::urlSplit($this->GetRequestCodeURL, $param);

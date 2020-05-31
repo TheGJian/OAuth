@@ -64,6 +64,7 @@ class Tencent extends OAuthInterface
             'Version' => $config->Version,
             'ResponseType' => $config->ResponseType,
             'GrantType' => $config->GrantType,
+            'State' => $config->config['State'],
         ];
     }
 
@@ -77,7 +78,7 @@ class Tencent extends OAuthInterface
             'client_id' => $this->payload['AppKey'],
             'redirect_uri' => $this->payload['Callback'],
             'response_type' => $this->payload['ResponseType'],
-            'state' => md5(rand(1, 100))
+            'state' => $this->payload['State']
         ];
         return Http::urlSplit($this->GetRequestCodeURL, $params);
     }
