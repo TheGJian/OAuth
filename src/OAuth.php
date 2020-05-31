@@ -15,6 +15,7 @@ use zguangjian\Extend\Google;
 use zguangjian\Extend\Sina;
 use zguangjian\Extend\Tencent;
 use zguangjian\Extend\WeChat;
+use zguangjian\Extend\WindowsLive;
 
 /**
  * Class OAuth
@@ -25,6 +26,7 @@ use zguangjian\Extend\WeChat;
  * @method static Tencent   Tencent(array $config)      腾讯QQ登陆
  * @method static WeChat    WeChat(array $config)       微信登陆
  * @method static GitHub    GitHub(array $config)       GitHub登陆
+ * @method static WindowsLive    WindowsLive(array $config)       WindowsLive登陆
  */
 class OAuth
 {
