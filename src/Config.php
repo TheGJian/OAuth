@@ -9,7 +9,10 @@
 
 namespace zguangjian;
 
-
+/**
+ * Class Config
+ * @package zguangjian
+ */
 class Config
 {
     /**
@@ -32,18 +35,29 @@ class Config
      */
     public $GrantType = 'authorization_code';
 
-
+    /**
+     * Config constructor.
+     * @param $config
+     */
     public function __construct($config)
     {
         $this->config = $config;
     }
 
-
+    /**
+     * @param $key
+     * @return mixed|null
+     */
     public function __get($key)
     {
         return $this->getConfig($key);
     }
 
+    /**
+     * @param null $key
+     * @param null $default
+     * @return mixed|null
+     */
     public function getConfig($key = null, $default = null)
     {
         if (is_null($key)) {

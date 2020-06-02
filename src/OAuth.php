@@ -77,7 +77,6 @@ class OAuth
      * @return mixed
      * @throws \Exception
      */
-
     protected function make($methodClass)
     {
         $app = new $methodClass($this->config);

@@ -16,7 +16,6 @@ use zguangjian\OAuth;
 /**
  * Class Tencent
  * @package zguangjian\Extend
- * @method getCode code  跳转第三方登陆
  */
 class Tencent extends OAuthInterface
 {
@@ -134,7 +133,7 @@ class Tencent extends OAuthInterface
         $res = Http::request($this->GetAccessOpenId, $params);
 
         $data = Http::requestJson(substr(substr($res, strpos($res, '{')), 0, strpos(substr($res, strpos($res, '{')), '}') + 1));
-        $this->payload['openId'] = $data->openid;
+        $this->payload['openId'] = $data['openid'];
 
         return $this;
     }

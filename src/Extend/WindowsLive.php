@@ -14,6 +14,10 @@ use zguangjian\Config;
 use zguangjian\Events\OAuthInterface;
 use zguangjian\Http;
 
+/**
+ * Class WindowsLive
+ * @package zguangjian\Extend
+ */
 class WindowsLive extends OAuthInterface
 {
     public $payload;
@@ -39,7 +43,7 @@ class WindowsLive extends OAuthInterface
     public function __construct(Config $config)
     {
         $this->payload = [
-            'Tenant' => $config->config['Tenant'] ?: 'consumers',
+            'Tenant' => $config->config['gitTenant'] ?: 'consumers',
             'AppKey' => $config->config['AppKey'],
             'AppSecret' => $config->config['AppSecret'],
             'Callback' => $config->config['Callback'],

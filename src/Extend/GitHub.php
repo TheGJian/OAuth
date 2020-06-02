@@ -13,6 +13,10 @@ use zguangjian\Config;
 use zguangjian\Events\OAuthInterface;
 use zguangjian\Http;
 
+/**
+ * Class GitHub
+ * @package zguangjian\Extend
+ */
 class GitHub extends OAuthInterface
 {
     public $payload;
@@ -64,11 +68,11 @@ class GitHub extends OAuthInterface
             'client_secret' => $this->payload['AppSecret'],
             'code' => $code,
             'redirect_uri' => $this->payload['Callback'],
-            'state' => $this->payload['state'],
+            'state' => $this->payload['State'],
         ];
 
         $this->payload['accessTokenInfo'] = Http::requestJson(Http::request($this->GetRequestTokenURL, $param, 'POST', ['Accept: application/json']));
-        $this->payload['accessToken'] = $this->payload['accessToken']['access_token'];
+        $this->payload['accessToken'] = $this->payload['accessTokenInfo']['access_token'];
         return $this;
     }
 

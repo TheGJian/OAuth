@@ -9,7 +9,10 @@
 
 namespace zguangjian;
 
-
+/**
+ * Class Http
+ * @package zguangjian
+ */
 class Http
 {
     /**
@@ -56,6 +59,11 @@ class Http
         return $data;
     }
 
+    /**
+     * @param $url
+     * @param array $param
+     * @return string
+     */
     public static function urlSplit($url, $param = [])
     {
         return $url . '?' . http_build_query($param);
