@@ -7,7 +7,7 @@
 
 ##  安装
 ```shell
-$ composer require zguangjian/oauth dev-master
+$ composer require zguangjian/oauth 1.*
 ```
 
 ## 使用方法

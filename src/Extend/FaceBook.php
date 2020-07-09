@@ -71,7 +71,7 @@ class FaceBook extends OAuthInterface
      * @return mixed|void
      * @throws \Exception
      */
-    public function getToken(string $code)
+    protected function getToken(string $code)
     {
         $params = [
             'client_id' => $this->payload['AppKey'],

@@ -61,7 +61,7 @@ class GitHub extends OAuthInterface
      * @return $this|mixed|void
      * @throws \Exception
      */
-    public function getToken(string $code)
+    protected function getToken(string $code)
     {
         $param = [
             'client_id' => $this->payload['AppKey'],

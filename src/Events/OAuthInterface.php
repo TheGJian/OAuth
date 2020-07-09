@@ -22,24 +22,7 @@ abstract class OAuthInterface implements OAuthApplicationInterface
     {
         // TODO: Implement getCode() method.
     }
-
-    /**
-     * @param string $code
-     * @return mixed|void
-     */
-    public function getToken(string $code)
-    {
-        // TODO: Implement getToken() method.
-    }
-
-    /**
-     * @return mixed|void
-     */
-    public function getOpenId()
-    {
-        // TODO: Implement getOpenId() method.
-    }
-
+    
     /**
      * @param string $code
      * @return mixed|void

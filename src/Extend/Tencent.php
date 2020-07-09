@@ -87,7 +87,7 @@ class Tencent extends OAuthInterface
      * @return $this|mixed|void
      * @throws \Exception
      */
-    public function getToken(string $code)
+    protected function getToken(string $code)
     {
         $params = [
             'client_id' => $this->payload['AppKey'],
@@ -125,7 +125,7 @@ class Tencent extends OAuthInterface
      * @return $this|mixed|void
      * @throws \Exception
      */
-    public function getOpenId()
+    protected function getOpenId()
     {
         $params = [
             'access_token' => $this->payload['accessToken'],
