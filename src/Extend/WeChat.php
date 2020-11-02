@@ -44,16 +44,14 @@ class WeChat extends OAuthInterface
     public function __construct(Config $config)
     {
         $this->payload = [
-            $this->payload = [
-                'AppKey' => $config->config['AppKey'],
-                'AppSecret' => $config->config['AppSecret'],
-                'Callback' => $config->config['Callback'],
-                'Version' => $config->Version,
-                'ResponseType' => $config->ResponseType,
-                'GrantType' => $config->GrantType,
-                'State' => $config->config['State'] ?: md5(mt_rand()),
-                'Scope' => $config->config['State'] ?: md5(mt_rand()),
-            ]
+            'AppKey' => $config->config['AppKey'],
+            'AppSecret' => $config->config['AppSecret'],
+            'Callback' => $config->config['Callback'],
+            'Version' => $config->Version,
+            'ResponseType' => $config->ResponseType,
+            'GrantType' => $config->GrantType,
+            'State' => $config->config['State'] ?: md5(mt_rand()),
+            'Scope' => $config->Scope,
         ];
     }
 
