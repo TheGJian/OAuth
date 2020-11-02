@@ -46,6 +46,40 @@ public function TencentCallBack($code)
     $result = OAuth::Tencent($config)->getUserInfo($code);
 }
 ```
+### Wechat 微信
+```php
+use zguangjian\OAuth;
+
+/**
+ * 跳转第三方平台
+* @return mixed
+ */
+public function Tencent()
+{
+    $config = [
+        'AppKey' => '**********',
+        'AppSecret' => '**********',
+        'Callback' => 'http://www.guangjian.site/home/wechat',
+        'State' => md5(mt_rand()),  
+    ];
+    return redirect(OAuth::WeChat($config)->getCode());
+}
+/**
+* 回调
+* @param $code
+* @throws Exception
+ */
+public function WechatCallBack($code)
+{
+    $config = [
+        'AppKey' => '**********',
+        'AppSecret' => '**********',
+        'Callback' => 'http://www.guangjian.site/home/tencent',
+        'State' => md5(mt_rand()),  
+    ];
+    $result = OAuth::WeChat($config)->getUserInfo($code);
+}
+```
 
 ### Sina 新浪
 ```php
